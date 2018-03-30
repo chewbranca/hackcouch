@@ -12,9 +12,7 @@ mkdir ~/src
 git clone https://github.com/chewbranca/hackcouch.git ~/src/hackcouch
 
 ln -s ~/src/hackcouch/VagrantFile ~/boxes/couchdb
-ln -s ~/src/hackcouch/playbook.yml ~/boxes/couchdb
-ln -s ~/src/hackcouch/erlang.yml ~/boxes/couchdb
-ln -s ~/src/hackcouch/couchdb.yml ~/boxes/couchdb
+ln -s ~/src/hackcouch/playbooks_enabled/ ~/boxes/couchdb/playbooks_enabled
 
 cd ~/boxes/couchdb
 vagrant up
