@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  tasks:
+
+    - name: Install CouchDB Deps
+      apt: name={{ item }} state=latest update_cache=yes
+      with_items:
+        - libmozjs185-1.0
+        - libmozjs185-dev
+        - libleveldb1
+        - libleveldb-dev
+        - leveldb-doc
+        - libsnappy1
+        - libsnappy-dev
+      become: true
+
+    - name: Fetch CouchDB
+      git: repo="https://github.com/apache/couchdb.git"
+           dest=/home/{{ ansible_ssh_user }}/src/couchdb
+           update=no
+           clone=yes
+

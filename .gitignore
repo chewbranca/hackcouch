@@ -1,0 +1,12 @@
+!*.gitignore
+tmp
+.DS_Store
+*.pyc
+*.bak
+*.pyc
+.*.swp
+.*.swo
+*~
+\#*\#
+tramp
+.\#*

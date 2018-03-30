@@ -1,0 +1,68 @@
+---
+
+- hosts: all
+  vars:
+    git_email: "chewbranca@apache.org"
+
+  tasks:
+
+    - name: Install libcurl on Debian
+      apt: name=libcurl4-openssl-dev state=latest
+      become: true
+      when: ansible_distribution == 'Debian'
+
+    - name: Install deps
+      apt: name={{ item }} state=latest update_cache=yes
+      with_items:
+        - build-essential
+        - autoconf
+        - git
+        - curl
+        - vim-nox
+        - libssl1.0.0
+        - libssl-dev
+        - zlib1g
+        - zlib1g-dev
+        - lsb-base
+        - ncurses-dev
+        - libncurses-dev
+        - libicu-dev
+        - xsltproc
+        - libxml2-dev
+        - libxslt1-dev
+        - tmux
+        - haproxy
+        - exuberant-ctags
+
+        - tree
+        - python-pip
+        - python-dev
+
+        # systems performance analysis
+        - atop
+        - sysstat
+        - strace
+        - gcc-multilib # to use libc6-i386 and others
+        - libc6-i386 # nicstat dep
+        - tcpdump
+        - iptraf-ng
+        - iotop
+        - linux-tools-3.16
+      become: true
+
+    - name: Update apt-cache
+      apt: update_cache=yes
+      become: true
+
+    - name: Install pip modules
+      pip: name={{ item }}
+      with_items:
+        - requests
+        - grequests
+        - virtualenv
+        - jinja2
+      become: true
+
+    - file: path=/home/{{ ansible_ssh_user }}/src state=directory
+    - file: path=/home/{{ ansible_ssh_user }}/bin state=directory
+

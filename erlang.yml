@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  tasks:
+
+    - name: Install Erlang
+      apt: name={{ item }} state=latest update_cache=yes
+      with_items:
+        - erlang-dev
+        - erlang-nox
+        - erlang-manpages
+        - erlang-doc
+      become: true
