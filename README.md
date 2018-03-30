@@ -6,6 +6,7 @@ Debian based Vagrant VM dev environment for CouchDB.
 
 ```
 mkdir ~/boxes
+mkdir ~/boxes/couchdb
 mkdir ~/src
 
 git clone https://github.com/chewbranca/hackcouch.git ~/src/hackcouch
